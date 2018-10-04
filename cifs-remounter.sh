@@ -7,7 +7,7 @@ while [[ "$tryagain" == "yes" ]];
   ping $server -c3 -i 2 &>/dev/null && (echo reachable $server $dest;count=$(ls -lh1 "$dest" |grep -v ^total |wc -l) ;
                                         if [[ "$(ls -lh1 "$dest" |grep -v ^total |wc -l)" -eq 0 ]] ; 
                                         echo -n "remounting...";
-                                            then umount "$dest";
+                                            then umount "$(echo $Mount|cut -d" " -f1)";
                                             mount "$dest";
                                          fi ; 
                                          if [[ "$(ls -lh1 "$dest" |grep -v ^total |wc -l)" -eq 0 ]] ; 
