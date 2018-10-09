@@ -8,7 +8,7 @@ while [[ "$tryagain" == "yes" ]];
                                         if [[ "$(ls -lh1 "$dest" |grep -v ^total |wc -l)" -eq 0 ]] ; 
                                         echo -n "remounting...";
                                             then umount "$(echo $Mount|cut -d" " -f1)";
-                                            mount "$dest";
+                                            test -d "$dest" && (mount "$dest";echo mount tried) || ( echo no mountpoint;tryagain=yes;)
                                          fi ; 
                                          if [[ "$(ls -lh1 "$dest" |grep -v ^total |wc -l)" -eq 0 ]] ; 
                                               then tryagain=yes;
